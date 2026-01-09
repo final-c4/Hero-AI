@@ -869,7 +869,7 @@ HERO는 단순한 기능 나열이 아닌,
 
 ## CI / CD 계획서
 <details>
-  내용 & 제목 수정 가능
+  <summary>내용 & 제목 수정 가능</summary>
 </details>
 
 
