@@ -187,6 +187,32 @@ HERO는 단순한 기능 나열이 아닌,
 <img width="2121" height="1262" alt="KakaoTalk_Photo_2026-01-05-16-59-19" src="https://github.com/user-attachments/assets/db665141-4fce-48d2-806f-c887f7e971c5" />
 
 
+### 🖥️ 프론트엔드 (Frontend: Vue.js)
+
+* **배포 방식:** GitHub Actions를 통해 빌드된 결과물이 EC2(Nginx)에 배포됩니다. 
+* **접속 경로:** Route 53에서 도메인 주소를 **ALB**의 DNS 명으로 연결합니다.
+* **역할:** ALB가 요청을 받아 각 가용 영역(AZ-a, AZ-c)에 있는 EC2 인스턴스의 **Nginx**로 트래픽을 분산하며, Nginx는 정적 자원을 서빙합니다.
+
+### 🧩 백엔드 (Backend: Spring Boot & Python)
+
+* **구조:** 보안을 위해 **Private Subnet** 내부에 위치하며, 외부에서 직접 접근이 불가능합니다.
+* **배포 관리:** Elastic Beanstalk 기반의 **Blue-Green 방식**을 사용하여 무중단 배포를 실현합니다.
+* **통신:** 프론트엔드 서버나 외부 요청은 ALB를 거쳐 내부 Target Group(TG)으로 전달됩니다.
+
+### 🔁 Blue-Green 배포 (무중단 배포 전략)
+
+* **이중화 환경:** 현재 운영 중인 'Blue' 환경과 새 버전이 올라갈 'Green' 환경을 독립적으로 유지합니다.
+* **전환 및 롤백:** 배포 완료 후 **Target Group의 대상(EC2 인스턴스)을 교체**하거나 ALB의 가중치를 조절하여 트래픽을 전환합니다.
+* **안정성:** 설명하신 대로 수동 확인 과정을 거침으로써, 신규 버전의 로그를 CloudWatch로 모니터링한 뒤 최종 전환하여 리스크를 최소화합니다.
+
+### 🗃️ 데이터베이스 및 보안
+
+* **RDS (MariaDB):** Private Subnet에 위치하여 오직 내부 백엔드 서버를 통해서만 데이터에 접근할 수 있도록 설계되었습니다.
+* **Bastion Host:** 관리자가 내부 서버(Private Subnet)에 SSH 접속이나 관리가 필요할 때 사용하는 관문 역할을 합니다.
+* **NAT Gateway:** Private Subnet의 서버들이 외부 라이브러리를 업데이트하거나 외부 API와 통신하기 위해 필요한 아웃바운드 통로입니다.
+
+
+
 <br>
 <div align="right">
   <a href="#목차">🔝 맨 위로</a>
