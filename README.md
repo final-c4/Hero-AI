@@ -889,9 +889,10 @@ HERO는 단순한 기능 나열이 아닌,
 - 지윤
 
 <br>
-변민철
+
 
 <details>
+  <summary>변민철</summary>
 이번 프로젝트에서 맡은 역할
 
 - 결재 도메인 API 및 UI 구현
