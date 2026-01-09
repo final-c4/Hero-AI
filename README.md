@@ -1,12 +1,7 @@
 # HERO - 보이는 인사관리,통합 HR 대시보드
 
 <div align="center">
-  <img
-    width="300"
-    height="200"
-    alt="logo"
-    src="https://github.com/user-attachments/assets/d265cec7-0b13-45a8-88f0-68e6dc84a432"
-  />
+  <img width="492" height="200" alt="image" src="https://github.com/user-attachments/assets/a5a984c1-b005-43a8-bec6-f07fafe8d7e9" />
 </div>
 
 <hr>
